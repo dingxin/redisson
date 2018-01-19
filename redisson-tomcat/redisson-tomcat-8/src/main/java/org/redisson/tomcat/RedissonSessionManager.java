@@ -45,7 +45,8 @@ public class RedissonSessionManager extends ManagerBase {
     
     private RedissonClient redisson;
     private String configPath;
-    
+    private String namespace = "redisson_tomcat_session";
+
     private ReadMode readMode = ReadMode.MEMORY;
     
     public String getReadMode() {
@@ -64,6 +65,14 @@ public class RedissonSessionManager extends ManagerBase {
         return configPath;
     }
     
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+    
+    public String getNamespace() {
+        return namespace;
+    }
+ 
     @Override
     public String getName() {
         return RedissonSessionManager.class.getSimpleName();
@@ -97,7 +106,7 @@ public class RedissonSessionManager extends ManagerBase {
     }
 
     public RMap<String, Object> getMap(String sessionId) {
-        return redisson.getMap("redisson_tomcat_session:" + sessionId);
+        return redisson.getMap(this.namespace + ":" + sessionId);
     }
     
     @Override

@@ -28,7 +28,7 @@ import org.redisson.command.CommandReactiveExecutor;
 import org.redisson.misc.Hash;
 
 import io.netty.buffer.ByteBuf;
-import reactor.fn.Supplier;
+import java.util.function.Supplier;
 
 /**
  * 
